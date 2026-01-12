@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وسام للالكترونيات - متجر الإلكترونيات في عمان</title>
+    
+    <!-- Firebase SDK v9 (أحدث إصدار) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+    
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="manifest" href="./manifest.json">
+</head>
+<body>
+
+<!-- ===== Mobile Top Bar (Professional) ===== -->
+<div class="m-topbar" id="mTopbar">
+  <div class="m-topbar-inner container">
+    <button class="m-icon-btn" id="mMenuBtn" aria-label="القائمة">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="m-brand" id="mBrand">
+      <span class="m-brand-name" id="mStoreNameMobile">وسام للالكترونيات</span>
+    </div>
+
+    <button class="m-icon-btn m-cart-btn" id="mCartBtn" aria-label="السلة">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="m-badge" id="mCartCount">0</span>
+    </button>
+  </div>
+</div>
+
+<!-- Mobile Quick Actions Strip (visible on mobile) -->
+<div class="m-quickstrip" id="mQuickStrip">
+  <div class="container m-quickstrip-inner">
+    <a class="m-qs whatsapp" id="mQSWhatsApp" href="https://wa.me/962790781206" aria-label="واتساب" target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a class="m-qs facebook" id="mQSFb" href="https://facebook.com" aria-label="فيسبوك" target="_blank" rel="noopener">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a class="m-qs maps" id="mQSMaps" href="https://maps.google.com" aria-label="الموقع" target="_blank" rel="noopener">
+      <i class="fas fa-location-dot"></i>
+    </a>
+    <a class="m-qs youtube" id="mQSYt" href="https://youtube.com" aria-label="يوتيوب" target="_blank" rel="noopener">
+      <i class="fab fa-youtube"></i>
+    </a>
+    <a class="m-qs email" id="mQSEmail" href="mailto:wesamelectronics@gmail.com" aria-label="الإيميل">
+      <i class="fas fa-envelope"></i>
+    </a>
+
+    <button class="m-qs cart" id="mQSCart" type="button" aria-label="السلة">
+      <i class="fas fa-cart-shopping"></i>
+      <span class="m-qs-badge" id="mQSCartCount" style="display:none;">0</span>
+    </button>
+</div>
+</div>
+
+</div>
+<!-- /Mobile Quick Actions Strip -->
+
+
+<!-- Mobile Drawer -->
+<div class="m-drawer-backdrop" id="mDrawerBackdrop"></div>
+<aside class="m-drawer" id="mDrawer" aria-hidden="true">
+  <div class="m-drawer-header">
+    <div class="m-drawer-title">
+      <i class="fas fa-store"></i>
+      <span id="mDrawerStoreName">وسام للالكترونيات</span>
+    </div>
+    <button class="m-icon-btn" id="mCloseDrawer" aria-label="إغلاق">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <div class="m-drawer-body">
+    <div class="m-search">
+      <i class="fas fa-search"></i>
+      <input type="text" id="mSearchInput" placeholder="ابحث عن منتج..." />
+    </div>
+
+    <div class="m-quick-actions mobile-social-icons">
+
+  <a href="https://wa.me/962790781206" class="msi whatsapp" target="_blank" rel="noopener">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <a href="https://facebook.com" class="msi facebook" target="_blank" rel="noopener">
+    <i class="fab fa-facebook-f"></i>
+  </a>
+
+  <a href="https://maps.google.com" class="msi maps" target="_blank" rel="noopener">
+    <i class="fas fa-map-marker-alt"></i>
+  </a>
+
+  <a href="https://youtube.com" class="msi youtube" target="_blank" rel="noopener">
+    <i class="fab fa-youtube"></i>
+  </a>
+
+</div>
+
+    <div class="m-info">
+      <div class="m-info-row">
+        <i class="fas fa-phone"></i>
+        <span id="mPhoneText">0790781206</span>
+      </div>
+      <div class="m-info-row">
+        <i class="fas fa-location-dot"></i>
+        <span id="mAddressText">عمان - شفابدران</span>
+      </div>
+      <div class="m-info-row">
+        <i class="fas fa-truck"></i>
+        <span>التوصيل متاح</span>
+      </div>
+    </div>
+
+    <div class="m-links">
+      <button class="m-link-btn" id="mGoCategories"><i class="fas fa-list"></i> الأقسام</button>
+      <button class="m-link-btn" id="mGoProducts"><i class="fas fa-box-open"></i> المنتجات</button>
+      <button class="m-link-btn" id="mOpenService"><i class="fas fa-screwdriver-wrench"></i> طلب صيانة</button>
+    </div>
+  </div>
+</aside>
+<!-- ===== /Mobile Top Bar ===== -->
+
+    <!-- Loading Overlay -->
+    <div id="firebaseLoading" class="firebase-loading" style="display: none;">
+        <i class="fas fa-spinner"></i>
+        <p>جاري حفظ البيانات...</p>
+    </div>
+
+    <!-- Error Banner -->
+    <div id="firebaseErrorBanner" class="firebase-error-banner">
+        <span id="errorMessage">فشل الاتصال بقاعدة البيانات</span>
+        <button class="error-retry-btn" onclick="retryFirebaseConnection()">إعادة المحاولة</button>
+    </div>
+
+    <!-- Connection Status -->
+    <div id="connectionStatus" class="connection-status"></div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-tv" id="logoIcon"></i>
+                        <img src="" alt="شعار المتجر" class="logo-img" id="logoImage">
+                    </div>
+                    <div class="logo-text-container">
+                        <div class="logo-main">
+                            <span class="logo-subtext" id="storeNameHeader">وسام للالكترونيات</span>
+                            <span class="logo-text" id="wesamLogo">wesam</span>
+                        </div>
+                        <p class="logo-slogan" id="storeSloganHeader">متخصصون في أجهزة TV-LCD-LED والإلكترونيات</p>
+                    </div>
+                </div>
+                <div class="contact-info">
+                    <div class="phone-number">
+                        <i class="fas fa-phone"></i> <span id="phoneNumberHeader">0790781206</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-map-marker-alt"></i> <span id="storeAddressHeader">عمان - شفابدران</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-truck"></i> التوصيل متاح
+                    </div>
+                    <!-- Social Media Links -->
+                    <div class="social-links" id="socialLinks"></div>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <p class="tagline" id="storeTaglineHeader">أفضل المنتجات الإلكترونية بأفضل الأسعار - جودة واستبدال فوري</p>
+                <div class="specialization" id="specializationHeader">
+                    <i class="fas fa-tv"></i>
+                    TV - LCD - LED - إلكترونيات
+                </div>
+                <div class="header-actions">
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                    <button class="admin-login-btn" id="adminLoginBtn" style="display: none;">
+                        <i class="fas fa-user-cog"></i> دخول المدير
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>دخول المدير</h3>
+                <button class="close-modal" id="closeLoginModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="adminPassword">كلمة المرور</label>
+                    <input type="password" id="adminPassword" placeholder="أدخل كلمة المرور">
+                </div>
+                <button class="login-btn" id="loginBtn">تسجيل الدخول</button>
+                <p id="loginError" style="color: #f44336; margin-top: 10px; display: none;">كلمة المرور غير صحيحة</p>
+                <p style="color: #666; margin-top: 15px; font-size: 0.9rem;">
+                    <i class="fas fa-keyboard"></i> استخدم Ctrl+F7 لإظهار زر المدير
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Gallery Modal -->
+    <div id="galleryModal" class="gallery-modal">
+        <div class="gallery-modal-content">
+            <div class="gallery-header">
+                <h3 id="galleryProductName"></h3>
+                <button class="close-modal" id="closeGalleryModal">&times;</button>
+            </div>
+            <div class="gallery-main-image">
+                <img id="galleryMainImage" src="" alt="صورة المنتج">
+            </div>
+            <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+            <div class="product-details-modal" id="galleryProductDetails"></div>
+        </div>
+    </div>
+
+    <!-- Cart Popup Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-modal-content">
+            <div class="cart-header">
+                <h3>سلة التسوق</h3>
+                <button class="close-modal" id="closeCart">&times;</button>
+            </div>
+            <div class="cart-body">
+                <div class="cart-left">
+                    <div class="cart-items" id="cartItems"></div>
+
+                    <div class="cart-footer">
+                <div class="order-summary">
+                    <h4>ملخص الطلب</h4>
+                    <div class="summary-row">
+                        <span>سعر المنتجات:</span>
+                        <span id="subtotalPrice">0 دينار</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>رسوم التوصيل:</span>
+                        <span id="shippingFee">0 دينار</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>المجموع الكلي:</span>
+                        <span id="totalPrice">0 دينار</span>
+                    </div>
+                </div>
+                
+                <div class="checkout-options">
+                    <button class="whatsapp-btn" id="whatsappOrderBtn">
+                        <i class="fab fa-whatsapp"></i> إرسال عبر واتساب
+                    </button>
+                    <button class="email-btn" id="emailOrderBtn">
+                        <i class="fas fa-envelope"></i> إرسال بالبريد
+                    </button>
+                </div>
+            </div>
+                </div>
+
+                <div class="cart-right">
+                    <div class="customer-info">
+                <h4>معلومات العميل</h4>
+                <div class="form-group">
+                    <label for="customerName">الاسم الكامل *</label>
+                    <input type="text" id="customerName" placeholder="أدخل اسمك الكامل" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">رقم الهاتف *</label>
+                    <input type="tel" id="customerPhone" placeholder="07XXXXXXXX" required>
+                </div>
+                
+                <div class="shipping-options">
+                    <h4>خيارات الشحن</h4>
+                    <div class="shipping-option" id="pickupOption">
+                        <input type="radio" name="shipping" id="pickup" value="pickup" checked>
+                        <label for="pickup" style="margin-right: 10px; cursor: pointer;">
+                            <strong>الاستلام من المتجر</strong><br>
+                            <small>عمان - شفابدران (مجاناً)</small>
+                        </label>
+                    </div>
+                    <div class="shipping-option" id="deliveryOption">
+                        <input type="radio" name="shipping" id="delivery" value="delivery">
+                        <label for="delivery" style="margin-right: 10px; cursor: pointer;">
+                            <strong>التوصيل للمنزل</strong><br>
+                            <small>رسوم التوصيل: 2 دينار</small>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="delivery-address" id="deliveryAddress">
+                    <div class="form-group">
+                        <label for="customerAddress">عنوان التوصيل *</label>
+                        <textarea id="customerAddress" placeholder="أدخل عنوانك التفصيلي..." rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+</div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-header">
+            <h3><i class="fas fa-user-cog"></i> لوحة تحكم المدير</h3>
+            <button class="logout-btn" id="adminLogoutBtn">تسجيل الخروج</button>
+        </div>
+        <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="addProduct">إضافة منتج جديد</button>
+            <button class="admin-tab" data-tab="manageProducts">إدارة المنتجات</button>
+            <button class="admin-tab" data-tab="productOrder">ترتيب المنتجات</button>
+            <button class="admin-tab" data-tab="categoryOrder">ترتيب التصنيفات</button>
+            <button class="admin-tab" data-tab="addCategory">إضافة تصنيف جديد</button>
+            <button class="admin-tab" data-tab="storeSettings">إعدادات المتجر</button>
+            <button class="admin-tab" data-tab="serviceRequests">طلبات الصيانة</button>
+            <button class="admin-tab" data-tab="pageContent">محتوى الصفحة</button>
+        </div>
+        <div class="admin-content">
+            <!-- Add Product Section -->
+            <div id="addProductSection" class="admin-section active">
+                <h3><i class="fas fa-plus-circle"></i> إضافة منتج جديد</h3>
+                <form id="addProductForm" class="product-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productName">اسم المنتج *</label>
+                            <input type="text" id="productName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">الفئة *</label>
+                            <select id="productCategory" required>
+                                <option value="">اختر الفئة</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productPrice">سعر البيع (دينار) *</label>
+                            <input type="number" id="productPrice" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productStock">الكمية في المخزون *</label>
+                            <input type="number" id="productStock" min="0" required>
+                        </div>
+                        <div class="form-group" style="display:flex; align-items:flex-end;">
+                            <label style="display:flex; gap:10px; align-items:center; cursor:pointer;">
+                                <input type="checkbox" id="productFeatured" style="transform:scale(1.2);">
+                                عرض ضمن المنتجات المختارة والأفضل
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productDescription">وصف المنتج (المواصفات)</label>
+                        <textarea id="productDescription" placeholder="أدخل مواصفات المنتج التفصيلية..."></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productDeliveryFee">رسوم التوصيل (دينار)</label>
+                            <input type="number" id="productDeliveryFee" min="0" step="0.01" value="2">
+                        </div>
+                        <div class="form-group">
+                            <label for="productVideoUrl">رابط فيديو المنتج (اختياري)</label>
+                            <input type="url" id="productVideoUrl" placeholder="https://youtube.com/watch?v=...">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productImageUrl">رابط الصورة الرئيسية (URL) *</label>
+                        <input type="url" id="productImageUrl" class="image-url-input" 
+                               placeholder="https://example.com/image.jpg" required>
+                    </div>
+                    
+                    <div class="additional-images-section">
+                        <label>صور إضافية للمنتج (اختياري)</label>
+                        <div class="additional-images-container" id="additionalImagesContainer">
+                            <div class="form-group additional-image-input">
+                                <input type="url" class="additional-image-url" 
+                                       placeholder="https://example.com/image2.jpg">
+                            </div>
+                        </div>
+                        <button type="button" class="add-image-btn" id="addImageBtn">
+                            <i class="fas fa-plus"></i> إضافة صورة أخرى
+                        </button>
+                    </div>
+                    
+                    <div class="image-preview-container" id="imagePreviewContainer"></div>
+                    
+                    <div class="url-help">
+                        <i class="fas fa-info-circle"></i>
+                        أدخل رابط الصورة الكامل. يمكنك رفع الصورة على 
+                        <a href="https://imgbb.com" target="_blank">ImgBB</a> أو 
+                        <a href="https://postimages.org" target="_blank">PostImages</a> للحصول على رابط مجاني
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="save-btn">
+                            <i class="fas fa-save"></i> حفظ المنتج
+                        </button>
+                        <button type="button" class="delete-btn" id="clearFormBtn">
+                            <i class="fas fa-times"></i> مسح النموذج
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Manage Products Section -->
+            <div id="manageProductsSection" class="admin-section">
+                <h3><i class="fas fa-edit"></i> إدارة المنتجات</h3>
+                <div class="products-list">
+                    <table class="products-table" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>الصورة</th>
+                                <th>الاسم</th>
+                                <th>الفئة</th>
+                                <th>السعر</th>
+                                <th>المخزون</th>
+                                <th>فيديو</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Product Ordering Section -->
+            <div id="productOrderSection" class="admin-section">
+                <h3><i class="fas fa-sort-amount-down"></i> ترتيب المنتجات</h3>
+                <div class="product-order-section">
+                    <p>اسحب المنتجات لأعلى أو لأسفل لتغيير ترتيب عرضها في الصفحة الرئيسية:</p>
+                    <div class="product-order-list" id="productOrderList"></div>
+                    <div class="form-actions">
+                        <button class="save-btn" id="saveProductOrderBtn">
+                            <i class="fas fa-save"></i> حفظ الترتيب
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Ordering Section -->
+            <div id="categoryOrderSection" class="admin-section">
+                <h3><i class="fas fa-sort-alpha-down"></i> ترتيب التصنيفات</h3>
+                <div class="category-order-section">
+                    <p>اسحب التصنيفات لأعلى أو لأسفل لتغيير ترتيب عرضها في الصفحة الرئيسية:</p>
+                    <div class="category-order-list" id="categoryOrderList"></div>
+                    <div class="form-actions">
+                        <button class="save-btn" id="saveCategoryOrderBtn">
+                            <i class="fas fa-save"></i> حفظ ترتيب التصنيفات
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Category Section -->
+            <div id="addCategorySection" class="admin-section">
+                <h3><i class="fas fa-folder-plus"></i> إضافة تصنيف جديد</h3>
+                <div class="add-category-section">
+                    <form id="addCategoryForm">
+                        <div class="form-group">
+                            <label for="newCategoryName">اسم التصنيف الجديد *</label>
+                            <input type="text" id="newCategoryName" placeholder="أدخل اسم التصنيف" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newCategoryIcon">أيقونة التصنيف</label>
+                            <select id="newCategoryIcon">
+                                <option value="fas fa-headphones">سماعات</option>
+                                <option value="fas fa-tv">تلفزيون</option>
+                                <option value="fas fa-microchip">إلكترونيات</option>
+                                <option value="fas fa-mobile-alt">جوالات</option>
+                                <option value="fas fa-laptop">لابتوب</option>
+                                <option value="fas fa-tablet-alt">تابلت</option>
+                                <option value="fas fa-gamepad">ألعاب</option>
+                                <option value="fas fa-camera">كاميرات</option>
+                                <option value="fas fa-battery-full">بطاريات</option>
+                                <option value="fas fa-plug">شواحن</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn">
+                                <i class="fas fa-plus"></i> إضافة التصنيف
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <h4 style="margin-top: 30px;">التصنيفات الحالية</h4>
+                    <div class="categories-list" id="categoriesList">
+                        <!-- سيتم تعبئة التصنيفات هنا -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Store Settings Section -->
+            <div id="storeSettingsSection" class="admin-section">
+                <h3><i class="fas fa-cog"></i> إعدادات المتجر</h3>
+                <div class="admin-settings-section">
+                    <h4><i class="fas fa-link"></i> روابط التواصل الاجتماعي</h4>
+                    <form id="storeSettingsForm">
+                        <div class="form-group">
+                            <label for="whatsappLink">رابط الواتساب</label>
+                            <input type="url" id="whatsappLink" placeholder="https://wa.me/962790781206">
+                            <small style="color: #666;">رابط واتساب المتجر للتواصل المباشر</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="facebookLink">رابط الفيسبوك</label>
+                            <input type="url" id="facebookLink" placeholder="https://facebook.com/صفحتكم">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="googleMapsLink">رابط خرائط جوجل</label>
+                            <input type="url" id="googleMapsLink" placeholder="https://goo.gl/maps/رابط الموقع">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="youtubeLink">رابط يوتيوب</label>
+                            <input type="url" id="youtubeLink" placeholder="https://youtube.com/c/قناتكم">
+                        </div>
+
+<div class="form-group">
+    <label for="storeEmailSettings">ايميل المتجر</label>
+    <input type="email" id="storeEmailSettings" placeholder="wesamelectronics@gmail.com">
+    <small style="color: #666;">سيُستخدم في إرسال طلبات الصيانة/الطلبات عبر البريد</small>
+</div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="save-btn" id="saveSettingsBtn">
+                                <i class="fas fa-save"></i> حفظ الإعدادات
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+
+<!-- Service Requests Section (New) -->
+<div id="serviceRequestsSection" class="admin-section">
+    <h3><i class="fas fa-tools"></i> طلبات الصيانة</h3>
+    <div class="admin-settings-section">
+        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:center;">
+            <div>
+                <p style="margin:0; color:#666;">
+                    هنا تظهر جميع طلبات الصيانة (بدون تخزين الصور). يمكنك تغيير الحالة ونسخ رسالة واتساب.
+                </p>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button type="button" class="save-btn" id="refreshServiceRequestsBtn">
+                    <i class="fas fa-rotate"></i> تحديث القائمة
+                </button>
+            </div>
+        </div>
+
+        <div style="overflow:auto; margin-top:12px;">
+            <table class="products-table" style="min-width: 900px;">
+                <thead>
+                    <tr>
+                        <th>التاريخ</th>
+                        <th>العميل</th>
+                        <th>الهاتف</th>
+                        <th>الجهاز</th>
+                        <th>الحجم</th>
+                        <th>الحالة</th>
+                        <th>إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="serviceRequestsTableBody">
+                    <tr>
+                        <td colspan="7" style="text-align:center; padding:18px;">لا توجد بيانات بعد</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+            <!-- Page Content Section -->
+            <div id="pageContentSection" class="admin-section">
+                <h3><i class="fas fa-edit"></i> تعديل محتوى الصفحة</h3>
+                <div class="admin-settings-section">
+                    <h4><i class="fas fa-header"></i> محتوى الهيدر</h4>
+                    <form id="headerContentForm">
+                        <div class="form-group">
+                            <label for="storeName">اسم المتجر</label>
+                            <input type="text" id="storeName" placeholder="وسام للالكترونيات">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="wesamLogoText">شعار wesam</label>
+                            <input type="text" id="wesamLogoText" placeholder="wesam">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="storeSlogan">شعار المتجر</label>
+                            <input type="text" id="storeSlogan" placeholder="متخصصون في أجهزة TV-LCD-LED والإلكترونيات">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phoneNumber">رقم الهاتف</label>
+                                <input type="text" id="phoneNumber" placeholder="0790781206">
+                            </div>
+                            <div class="form-group">
+                                <label for="storeAddress">العنوان</label>
+                                <input type="text" id="storeAddress" placeholder="عمان - شفابدران">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="storeTagline">العبارة الترويجية</label>
+                            <textarea id="storeTagline" rows="2" placeholder="أفضل المنتجات الإلكترونية بأفضل الأسعار - جودة واستبدال فوري"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="specializationText">نص التخصص</label>
+                            <input type="text" id="specializationText" placeholder="TV - LCD - LED - إلكترونيات">
+                        </div>
+                    </form>
+                    
+                    <h4 style="margin-top: 30px;"><i class="fas fa-shoe-prints"></i> محتوى الفوتر</h4>
+                    <form id="footerContentForm">
+                        <div class="form-group">
+                            <label for="footerAbout">وصف المتجر (في الفوتر)</label>
+                            <textarea id="footerAbout" rows="3" placeholder="متجر وسام للإلكترونيات هو الوجهة المفضلة في عمان لشراء جميع المنتجات الإلكترونية والاكسسوارات ذات الجودة العالية. نقدم أفضل الأسعار مع استبدال فوري."></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="storeEmail">البريد الإلكتروني</label>
+                                <input type="email" id="storeEmail" placeholder="wesamelectronics@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="workingHours">ساعات العمل</label>
+                                <input type="text" id="workingHours" placeholder="9:00 ص - 10:00 م">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="servicesList">قائمة الخدمات (كل خدمة في سطر)</label>
+                            <textarea id="servicesList" rows="4" placeholder="توصيل سريع لجميع مناطق عمان
+دفع عند الاستلام
+استبدال فوري في حالة وجود عيب
+أسعار تنافسية وجودة عالية"></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="save-btn" id="savePageContentBtn">
+                                <i class="fas fa-save"></i> حفظ محتوى الصفحة
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Access Panel for Mobile -->
+    <div class="admin-access-panel">
+        <button class="admin-access-btn" id="openAdminAccess" title="الوصول إلى لوحة المدير">
+            <i class="fas fa-lock"></i>
+        </button>
+        
+        <div class="admin-access-modal" id="adminAccessModal">
+            <div class="admin-access-content">
+                <h3><i class="fas fa-user-cog"></i> الوصول إلى لوحة المدير</h3>
+                <p style="color: #666; margin-bottom: 20px; font-size: 0.9rem;">
+                    اختر الخيار المناسب للتحكم بلوحة المدير
+                </p>
+                
+                <div class="access-buttons">
+                    <button class="access-btn" id="accessShowBtn">
+                        <i class="fas fa-eye"></i>
+                        إظهار زر المدير
+                    </button>
+                    <button class="access-btn" id="accessHideBtn">
+                        <i class="fas fa-eye-slash"></i>
+                        إخفاء زر المدير
+                    </button>
+                    <button class="access-btn" id="accessDirectLoginBtn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        دخول مباشر إلى لوحة التحكم
+                    </button>
+                </div>
+                
+                <button class="access-close-btn" id="closeAdminAccess">
+                    <i class="fas fa-times"></i> إغلاق النافذة
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+
+<!-- Top Navigation (New) -->
+<div class="top-nav">
+    <div class="container">
+        <div class="nav-inner">
+            <div class="nav-links">
+                <button id="navServiceBtn" class="active" type="button"><i class="fas fa-tools"></i> الصيانة</button>
+                <button id="navShopBtn" type="button"><i class="fas fa-store"></i> المتجر</button>
+            </div>
+            <div class="nav-cta">
+                <a id="navWhatsApp" href="https://wa.me/962790781206" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i> واتساب
+                </a>
+                <a id="navEmail" href="mailto:wesamelectronics@gmail.com">
+                    <i class="fas fa-envelope"></i> ايميل
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hero + Service Main Section (New) -->
+<section class="hero" id="serviceHome">
+    <div class="container">
+        <div class="hero-card">
+            <div class="hero-grid">
+                <div>
+                    <h1><i class="fas fa-tools"></i> قسم الصيانة - قدّم طلبك خلال دقيقة</h1>
+                    <p>
+                        صيانة أجهزة TV / LCD / LED والإلكترونيات في عمّان. ارسل تفاصيل العطل مع الموقع (اختياري) وسنقوم بالتواصل معك وتجهيز الطلب بسرعة.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button class="btn-primary" id="openServiceRequestBtn" type="button">
+                            <i class="fas fa-wrench"></i> تسجيل طلب صيانة الآن
+                        </button>
+                        <button class="btn-secondary" id="scrollToShopBtn" type="button">
+                            <i class="fas fa-shopping-bag"></i> الذهاب إلى المتجر
+                        </button>
+                    </div>
+
+                    <div class="trust-badges">
+                        <span class="badge"><i class="fas fa-shield-alt"></i> فحص وتشخيص</span>
+                        <span class="badge"><i class="fas fa-truck"></i> توصيل من وإلى المنزل</span>
+                        <span class="badge"><i class="fas fa-clock"></i> تواصل سريع</span>
+                        <span class="badge"><i class="fas fa-star"></i> خبرة وإتقان</span>
+                    </div>
+</div>
+
+                <div class="hero-side">
+                    <h3><i class="fas fa-list-check"></i> ماذا نحتاج منك؟</h3>
+                    <ul class="quick-list">
+                        <li><i class="fas fa-user"></i> الاسم + رقم الهاتف</li>
+                        <li><i class="fas fa-tv"></i> نوع الجهاز + الحجم</li>
+                        <li><i class="fas fa-triangle-exclamation"></i> وصف العطل</li>
+                        <li><i class="fas fa-image"></i> صورة (اختياري) + رابطها</li>
+                        <li><i class="fas fa-location-dot"></i> موقعك (اختياري)</li>
+                    </ul>
+                    <p class="note">
+                        بعد إرسال الطلب، سيتم فتح واتساب تلقائياً مع رسالة جاهزة (ويوجد خيار إرسال ايميل أيضاً).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Request Modal (New) -->
+<div id="serviceRequestModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fas fa-tools"></i> تسجيل طلب صيانة</h3>
+            <button class="close-modal" id="closeServiceRequestModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="serviceRequestForm">
+                <div class="service-grid">
+                    <div class="form-group">
+                        <label for="srCustomerName">اسم العميل</label>
+                        <input type="text" id="srCustomerName" placeholder="مثال: أحمد محمد" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="srCustomerPhone">رقم الهاتف</label>
+                        <input type="tel" id="srCustomerPhone" placeholder="مثال: 079xxxxxxx" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="srDeviceType">نوع الجهاز / الماركة</label>
+                        <input type="text" id="srDeviceType" placeholder="مثال: سامسونج / توشيبا / LG" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="srDeviceSize">حجم الجهاز</label>
+                        <input type="text" id="srDeviceSize" placeholder="مثال: 55 بوصة / 25 لتر / ..." required>
+                    </div>
+
+                    <div class="form-group span-2">
+                        <label for="srFaultDesc">وصف العطل</label>
+                        <textarea id="srFaultDesc" rows="4" placeholder="اشرح العطل بالتفصيل..." required></textarea>
+                    </div>
+
+                    <div class="form-group span-2">
+                        <label>صورة العطل (اختياري)</label>
+                        <input type="file" id="srFaultImage" accept="image/*">
+                        
+                        <div class="service-actions">
+                            <button type="button" class="mini-btn" id="srUploadImageBtn"><i class="fas fa-arrow-up-right-from-square"></i> فتح PostImages لرفع الصورة</button>
+                            <button type="button" class="mini-btn" id="srClearImageBtn"><i class="fas fa-trash"></i> حذف الصورة</button>
+                        </div>
+                        <div class="note">بعد رفع الصورة في PostImages انسخ رابط (Hotlink for websites) والصقه هنا.</div>
+                        <div id="srUploadStatus" class="upload-status" style="display:none;"></div>
+                        <div class="form-group" style="margin-top:10px;">
+                            <label for="srImageLink">رابط الصورة (اختياري)</label>
+                            <input type="url" id="srImageLink" placeholder="https://...">
+                        </div>
+                    </div>
+
+                    <div class="form-group span-2">
+                        <label>موقع العميل (اختياري)</label>
+                        <div class="service-actions">
+                            <button type="button" class="mini-btn" id="srGetLocationBtn"><i class="fas fa-location-crosshairs"></i> استخدم موقعي الآن</button>
+                            <button type="button" class="mini-btn" id="srClearLocationBtn"><i class="fas fa-eraser"></i> مسح الموقع</button>
+                        </div>
+                        <div class="note" id="srLocationHint">يمكنك أيضاً وضع رابط خرائط أو كتابة عنوان مختصر.</div>
+                        <input type="url" id="srLocationLink" placeholder="رابط خرائط جوجل (اختياري)">
+                        <input type="text" id="srAddressText" placeholder="عنوان مختصر (اختياري)" style="margin-top:10px;">
+                    </div>
+                </div>
+
+                <div class="form-actions" style="margin-top:14px;">
+                    <button type="submit" class="save-btn" id="srSubmitBtn">
+                        <i class="fab fa-whatsapp"></i> تجهيز الطلب وإرساله للواتساب
+                    </button>
+                    <button type="button" class="email-btn" id="srEmailBtn">
+                        <i class="fas fa-envelope"></i> إرسال نفس الطلب عبر الإيميل
+                    </button>
+                </div>
+                <div class="note" style="margin-top:10px;">
+                    سيتم حفظ الطلب في قاعدة البيانات ليسهل عليك متابعته من لوحة التحكم.
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">تصنيفات المنتجات</h2>
+            <div class="categories-grid" id="categoriesGrid"></div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-header">
+                <h2 id="productsSectionTitle"><i class="fas fa-th-large"></i> المنتجات المختارة والأفضل</h2>
+                <div class="products-controls">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="ابحث عن منتج...">
+                    </div>
+                    <div class="sort-options">
+                        <select id="sortOptions">
+                            <option value="default">ترتيب حسب الإفتراضي</option>
+                            <option value="price-low">السعر: من الأقل إلى الأعلى</option>
+                            <option value="price-high">السعر: من الأعلى إلى الأقل</option>
+                            <option value="name">الاسم: أبجدي</option>
+                            <option value="stock">المخزون: الأعلى أولاً</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="productsGrid" class="products-grid"></div>
+            
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>جاري تحميل المنتجات...</p>
+            </div>
+            
+            <div id="noProducts" class="no-products" style="display: none;">
+                <i class="fas fa-box-open"></i>
+                <h3>لا توجد منتجات</h3>
+                <p>لا توجد منتجات في المخزن حالياً</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عن وسام للالكترونيات</h3>
+                    <p id="footerAboutText">متجر وسام للإلكترونيات هو الوجهة المفضلة في عمان لشراء جميع المنتجات الإلكترونية والاكسسوارات ذات الجودة العالية. نقدم أفضل الأسعار مع استبدال فوري.</p>
+                    <p><i class="fas fa-award"></i> جودة واستبدال فوري</p>
+                    <p><i class="fas fa-truck"></i> التوصيل لجميع مناطق عمان</p>
+                </div>
+                <div class="footer-section">
+                    <h3>معلومات الاتصال</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span id="footerAddress">عمان - شفابدران</span></p>
+                    <p><i class="fas fa-phone"></i> <span id="footerPhone">0790781206</span></p>
+                    <p><i class="fas fa-clock"></i> ساعات العمل: <span id="footerHours">9:00 ص - 10:00 م</span></p>
+                    <p><i class="fas fa-envelope"></i> <span id="footerEmail">wesamelectronics@gmail.com</span></p>
+                    
+                    <div class="footer-social-links" id="footerSocialLinks"></div>
+                </div>
+                <div class="footer-section">
+                    <h3>خدماتنا</h3>
+                    <ul id="footerServices">
+                        <li><i class="fas fa-chevron-left"></i> توصيل سريع لجميع مناطق عمان</li>
+                        <li><i class="fas fa-chevron-left"></i> دفع عند الاستلام</li>
+                        <li><i class="fas fa-chevron-left"></i> استبدال فوري في حالة وجود عيب</li>
+                        <li><i class="fas fa-chevron-left"></i> أسعار تنافسية وجودة عالية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2025 وسام للالكترونيات</p>
+                <p>عمان - الأردن | هاتف: 0790781206</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Code -->
+    
+
+<!-- Video Modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="./assets/js/firebase.js"></script>
+<script src="./assets/js/ui.js"></script>
+<script src="./assets/js/admin.js"></script>
+<script src="./assets/js/service_requests.js"></script>
+<script src="./assets/js/app.js"></script>
+
+</body>
+</html>
