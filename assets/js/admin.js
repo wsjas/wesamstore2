@@ -1,4 +1,4 @@
-function loadSiteSettings() {
+async function loadSiteSettings() {
             try {
                 if (!window.firebaseInitialized) {
                     console.warn('Firebase غير مهيأ، استخدام الإعدادات المحلية');
@@ -65,7 +65,7 @@ function loadSiteSettings() {
             }
         }
 
-function loadProductOrder() {
+async function loadProductOrder() {
             try {
                 if (!window.firebaseInitialized || !window.db) {
                     console.warn('Firebase غير متصل، استخدام الترتيب المحلي');
@@ -100,7 +100,7 @@ function loadProductOrder() {
             }
         }
 
-function saveProduct(productData) {
+async function saveProduct(productData) {
             try {
                 if (!window.firebaseInitialized) {
                     throw new Error("Firebase غير متصل");
@@ -162,7 +162,7 @@ function saveProduct(productData) {
             }
         }
 
-function deleteProduct(productId) {
+async function deleteProduct(productId) {
             if (!confirm("هل أنت متأكد من حذف هذا المنتج؟")) {
                 return;
             }
