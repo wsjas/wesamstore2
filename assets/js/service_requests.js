@@ -27,7 +27,7 @@ function buildServiceRequestMessage(data) {
     return lines.join('\n');
 }
 
-async function saveServiceRequestToFirestore(docData) {
+function saveServiceRequestToFirestore(docData) {
     if (!firebaseInitialized || !db) return; // allow graceful fallback
     try {
         // Prefer server timestamps for consistent ordering
@@ -47,7 +47,7 @@ async function saveServiceRequestToFirestore(docData) {
     }
 }
 
-async function refreshServiceRequests() {
+function refreshServiceRequests() {
     if (!elements.serviceRequestsTableBody) return;
 
     // If Firebase not available, show message

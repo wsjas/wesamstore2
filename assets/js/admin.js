@@ -1,4 +1,4 @@
-async function loadSiteSettings() {
+function loadSiteSettings() {
             try {
                 if (!window.firebaseInitialized) {
                     console.warn('Firebase غير مهيأ، استخدام الإعدادات المحلية');
@@ -65,7 +65,7 @@ async function loadSiteSettings() {
             }
         }
 
-async function loadProductOrder() {
+function loadProductOrder() {
             try {
                 if (!window.firebaseInitialized || !window.db) {
                     console.warn('Firebase غير متصل، استخدام الترتيب المحلي');
@@ -100,7 +100,7 @@ async function loadProductOrder() {
             }
         }
 
-async function saveProduct(productData) {
+function saveProduct(productData) {
             try {
                 if (!window.firebaseInitialized) {
                     throw new Error("Firebase غير متصل");
@@ -162,7 +162,7 @@ async function saveProduct(productData) {
             }
         }
 
-async function deleteProduct(productId) {
+function deleteProduct(productId) {
             if (!confirm("هل أنت متأكد من حذف هذا المنتج؟")) {
                 return;
             }
